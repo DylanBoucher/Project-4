@@ -1,9 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+/* HEADER.JS STYLING */
+
+/* Navbar styling */
 .nav {
-  background-color: lightgray;
+  background-color: #282828;
   display: flex;
   justify-content: space-around;
+  margin: -8px;
+  padding: 5px;
 }
 
+/* Individual links on navbar */
 a {
   text-decoration: none;
+  color: white;
+  font-size: 30px;
+  padding: 10px;
+  border: 1px solid transparent;
+}
+
+/* Links on hover */
+a:hover {
+  border: 1px solid white;
+}
+
+/* Links on click */
+a:active {
+  transform: scale(1.1);
+}
+
+/* REQUEST NEW LOCATION PAGE */
+
+/* top message styling */
+.new-location-message-container {
+  text-align: center;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.message-hr {
+  width: 300px;
+}
+
+/* Whole form with all inputs in it */
+.request-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15%;
+  border: 1px solid gray;
+  padding: 0px;
+  width: 350px;
+  margin: 15% 40%;
+  font-family: 'Poppins', sans-serif;
+  background-color: white;
+}
+
+/* Individual inputs */
+.request-input {
+  margin: 20px 10px;
+  border: none;
+  border-bottom: 1px solid lightgray;
+  height: 20px;
+  width: 250px;
+  font-size: 20px;
+}
+
+/* Submit button */
+.request-submit {
+  background-color: white;
+  border: 1px solid #3174ad;
+  color: #3174ad;
+  font-size: 20px;
+  padding: 6px 10px;
+  width: 250px;
+  margin: 10px;
+}
+
+/* Submit button on hover */
+.request-submit:hover {
+  transform: scale(1.2);
+}
+
+/* Submit button on click */
+.request-submit:active {
+  background-color: #428ccc;
+  color: white;
+  opacity: 100%;
+}
+
+/* FRONT PAGE STYLING*/
+
+/* Search bar and search button */
+.front-form {
+  display: flex;
+  justify-content: center;
+  margin-top: 20%;
+}
+
+/* Search bar */
+.front-search-bar {
+  font-size: 30px;
+  border-radius: 6px;
+  width: 1000px;
+  margin-right: 20px;
+}
+
+/* Search button */
+.front-submit {
+  background-color: #282828;
+  color: white;
+  border-radius: 6px;
+  font-size: 20px;
+  border: none;
+}
+
+/* Search button on hover */
+.front-submit:hover {
+  background-color: black;
+}
+
+/* Search button on click */
+.front-submit:active {
+  transform: scale(1.1);
+}
+
+/* ABOUT PAGE STYLING */
+
+/* Main Info styling */
+.about-info {
+  text-align: center;
+  font-size: 30px;
+}
+
+/* Links */
+.about-link-container a{
+  color: blue;
+  font-size: 20px;
+}
+
+.about-link-container {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
+  font-size: 20px;
 }

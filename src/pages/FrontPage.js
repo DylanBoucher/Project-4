@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import '../App.css'
 
 const FrontPage = () => {
     const [search, setSearch] = useState()
@@ -9,9 +9,9 @@ const FrontPage = () => {
     }
     return (
     <>
-        <form onSubmit={handleSubmit}>
-            <input type='text' placeholder="City, State" onChange={(e) => setSearch(e.target.value)}/>
-            <button type='submit'>Search</button>
+        <form onSubmit={handleSubmit} className='front-form'>
+            <input type='text' placeholder="Search..." onChange={(e) => setSearch(e.target.value)} className='front-search-bar'/>
+            <button type='submit' className='front-submit'>Search</button>
         </form>
     </>
     )
