@@ -49,13 +49,16 @@ a:active {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  margin-top: 15%;
   border: 1px solid gray;
   padding: 0px;
   width: 350px;
-  margin: 15% 40%;
+  margin: 5% 40%;
   font-family: 'Poppins', sans-serif;
   background-color: white;
+}
+
+label {
+  font-size: 20px;
 }
 
 /* Individual inputs */
@@ -70,9 +73,9 @@ a:active {
 
 /* Submit button */
 .request-submit {
-  background-color: white;
+  background-color: #3174ad;
   border: 1px solid #3174ad;
-  color: #3174ad;
+  color: white;
   font-size: 20px;
   padding: 6px 10px;
   width: 250px;
@@ -138,7 +141,7 @@ a:active {
 /* Links */
 .about-link-container a{
   color: blue;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .about-link-container {
@@ -147,5 +150,39 @@ a:active {
   bottom: 20px;
   transform: translate(-50%, -50%);
   margin: 0 auto;
+  font-size: 15px;
+}
+
+/* FORUM STYLES */
+
+/* Form styling */
+.forum-form {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+/* Search bar */
+.forum-search {
   font-size: 20px;
+  width: 500px;
+}
+
+/* submit button */
+.forum-submit {
+  background-color: #282828;
+  color: white;
+  border-radius: 6px;
+  font-size: 15px;
+  border: none;
+}
+
+/* submit button on hover */
+.forum-submit:hover {
+  background-color: black;
+}
+
+/* submit button on click */
+.forum-submit:active {
+  transform: scale(1.1);
 }

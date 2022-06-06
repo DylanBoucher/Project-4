@@ -5,7 +5,7 @@ import '../App.css'
 function New() {
   const [toSend, setToSend] = useState({
     name: '',
-    image: '',
+    address: '',
     about: '',
     reply_to: '',
   })
@@ -38,7 +38,9 @@ function New() {
           <p className='new-location-message'>New Location</p>
           <hr className='message-hr'/>
         </div>
+        <label htmlFor='name'>Name:</label>
         <input
+          id='name'
           type='text'
           name='name'
           placeholder='Location Name'
@@ -46,15 +48,19 @@ function New() {
           onChange={handleChange}
           className='request-input'
         />
+        <label htmlFor='address'>Address:</label>
         <input
           type='text'
-          name='image'
-          placeholder='Image(s)'
+          id='address'
+          name='address'
+          placeholder='Address'
           value={toSend.to_name}
           onChange={handleChange}
           className='request-input'
         />
+        <label htmlFor='about'>About:</label>
         <textarea
+          id='about'
           type='text'
           name='about'
           placeholder='About Location'
@@ -63,7 +69,9 @@ function New() {
           className='request-input'
           style={{height: '60px'}}
         />
+        <label htmlFor='email'>Email:</label>
         <input
+          id='email'
           type='text'
           name='reply_to'
           placeholder='Your email'
