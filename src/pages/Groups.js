@@ -38,6 +38,7 @@ useEffect(() => {
             <div key={e._id}>
                 <h3>{e.name}</h3>
                 <p>{e.about}</p>
+                <hr/>
             </div>
           )): <>Loading...</>
     )

@@ -7,7 +7,6 @@ const FrontPage = () => {
     const [search, setSearch] = useState()
     const [searched, setSearched] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
-    const [review, setReview] = useState({rating: '', contents: ''})
 
     const getLocations = () => {
         fetch('https://capstone-backend-project.herokuapp.com/location')
@@ -22,12 +21,27 @@ const FrontPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        setSearched(true)
+        if(search){
+            setSearched(true)
+            console.log(location)
+        }else{
+            alert('invalid')
+        }
     }
 
     const handleAddReview = () => {
         console.log('adding review')
         setIsOpen(true)
+    }
+    
+    const loadReviews = () => {
+        review ? 
+        review.map(e => {
+            <div>
+                <p>{e.rating}</p>
+                <p>{e.content}</p>
+            </div>
+        }) : <>Loading...</>
     }
 
     const loaded = () => {
@@ -42,9 +56,10 @@ const FrontPage = () => {
                 <h3>{e.name}</h3>
                 <p>Address: <a href={`https://www.google.com/maps/place/${e.address}`} className='address-link'>{e.address}</a></p>
                 <p>Phone Number: {e.number}</p>
-                <p>Website: <a href={`https://www.${e.webite}`} >{e.website}</a></p>
-                <p>Info: {e.about}</p>
+                <p>Website: <a href={`${e.website}`} >{e.website}</a></p>
+                <p className='location-info'>Info: {e.about}</p>
                 <p>Reviews: </p>
+                {loadReviews()}
                 <button onClick={handleAddReview}>Add Review</button>
             </div>
         ))
@@ -75,8 +90,8 @@ const FrontPage = () => {
               <h1>New Review</h1>
 
               <div>
-                  <input placeholder='Rating' value={review.rating} onChange={(e) => setReview({...review, rating: e.target.value})}/>
-                  <input placeholder='Add Review' value={review.content} onChange={(e) => setReview({...review, content: e.target.value})}/>
+                  <input placeholder='Rating' />
+                  <input placeholder='Add Review'/>
               </div>
           </Modal>
       </div>

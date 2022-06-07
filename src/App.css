@@ -12,7 +12,7 @@
 }
 
 /* Individual links on navbar */
-a {
+.nav a {
   text-decoration: none;
   color: white;
   font-size: 30px;
@@ -100,6 +100,23 @@ label {
   text-decoration: none;
   color: blue;
   font-size: 20px;
+}
+
+.locations {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid black;
+  width: 25%;
+  min-height: 375px;
+  margin: 20px;
+}
+
+.location-info {
+  white-space: nowrap;
+  overflow:hidden;
+  text-transform: ellipsis;
+  display: inline-block;
 }
 
 /* Search bar and search button */
