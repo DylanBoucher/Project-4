@@ -192,3 +192,13 @@ label {
 .forum-submit:active {
   transform: scale(1.1);
 }
+
+.forums-container {
+  color: black;
+}
+
+.invalid-message {
+  text-align: center;
+  font-size: 35px;
+  margin-top: 200px;
+}

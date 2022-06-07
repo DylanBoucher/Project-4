@@ -18,10 +18,12 @@ const FrontPage = () => {
     }, [])
 
     const handleSubmit = (e) => {
-            e.preventDefault()
-            console.log(search)
-            console.log(location)
-            setSearched(true)
+        e.preventDefault()
+        setSearched(true)
+    }
+
+    const handleAddReview = () => {
+        console.log('adding review')
     }
 
     const loaded = () => {
@@ -36,7 +38,10 @@ const FrontPage = () => {
                 <h3>{e.name}</h3>
                 <p>Address: <a href={`https://www.google.com/maps/place/${e.address}`} className='address-link'>{e.address}</a></p>
                 <p>Phone Number: {e.number}</p>
+                <p>Website: <a href={`https://www.${e.webite}`} >{e.website}</a></p>
                 <p>Info: {e.about}</p>
+                <p>Reviews: </p>
+                <button onClick={handleAddReview}>Add Review</button>
             </div>
         ))
     }
