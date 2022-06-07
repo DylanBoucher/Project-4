@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import '../App.css'
+import Modal from '../components/Modal'
 
 const FrontPage = () => {
     const [location, setLocation] = useState()
     const [search, setSearch] = useState()
     const [searched, setSearched] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
+    const [review, setReview] = useState({rating: '', contents: ''})
 
     const getLocations = () => {
         fetch('https://capstone-backend-project.herokuapp.com/location')
@@ -24,6 +27,7 @@ const FrontPage = () => {
 
     const handleAddReview = () => {
         console.log('adding review')
+        setIsOpen(true)
     }
 
     const loaded = () => {
@@ -60,6 +64,22 @@ const FrontPage = () => {
                 <input type='text' placeholder="Search..." onChange={(e) => setSearch(e.target.value)} className='front-search-bar'/>
                 <button type='submit' className='front-submit'>Search</button>
             </form>}
+
+        <div>
+          <Modal open={isOpen}>
+              <div>
+                  <button onClick={() => setIsOpen(false)}>Cancel</button>
+                  <button onClick={handleAddReview}>Add</button>
+              </div>
+
+              <h1>New Review</h1>
+
+              <div>
+                  <input placeholder='Rating' value={review.rating} onChange={(e) => setReview({...review, rating: e.target.value})}/>
+                  <input placeholder='Add Review' value={review.content} onChange={(e) => setReview({...review, content: e.target.value})}/>
+              </div>
+          </Modal>
+      </div>
     </>
     )
 }
