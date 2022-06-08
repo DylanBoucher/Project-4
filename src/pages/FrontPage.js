@@ -37,7 +37,7 @@ const FrontPage = (props) => {
     const openReviewModal =() => {
         //opens the modal
         setIsOpen(true)
-        console.log(currentLocationId)
+        // console.log(currentLocationId)
     }
 
     const loaded = () => {
@@ -59,7 +59,7 @@ const FrontPage = (props) => {
                 {/* Links to the location website */}
                 <p>Website: <a href={`${e.website}`} >{e.website}</a></p>
                 <p className='location-info'>Info: {e.about}</p>
-                <p>Reviews: </p>
+                <p>Reviews: ({0})</p>
 
                { allReviews.map(event => (
                     e._id === event.location ?
@@ -71,8 +71,8 @@ const FrontPage = (props) => {
                     : null
                 ))}
                 
-                {/* Opens a modal so you can add a review */}
-                <button onClick={openReviewModal}>Add Review</button>
+                {/* Opens a modal so you can add a review and sets the current location id into a state variable */}
+                <button onMouseEnter={() => setCurrentLocationId(e._id)} onClick={openReviewModal}>Add Review</button>
             </div>
         ))
     }
@@ -99,7 +99,7 @@ const FrontPage = (props) => {
                 {/* closes the modal */}
                 <button onClick={() => setIsOpen(false)}>Cancel</button>
                 {/* opens the modal */}
-                <button type='submit' onClick={handleAddReview}>Add</button>
+                <button type='submit' onClick={handleAddReview} onMouseEnter={() => setReviews({...reviews, location: currentLocationId})}>Add</button>
             </div>
 
             <h1>New Review</h1>
@@ -108,7 +108,7 @@ const FrontPage = (props) => {
                 {/* adds the value of each of the inputs to the reviews state */}
                 <input type='number' min='1' max='5' placeholder='Rating' onChange={(e) => setReviews({...reviews, rating: e.target.value})}/>
                 <input placeholder='Add Review' onChange={(e) => setReviews({...reviews, content: e.target.value})}/>
-                <input placeholder='location id' onChange={(e) => setReviews({...reviews, location: e.target.value})}/>
+                {/* <input className='review-id' placeholder={currentLocationId} onChange={(e) => setReviews({...reviews, location: e.target.value})}/> */}
             </div>
         </Modal>
       </div>
