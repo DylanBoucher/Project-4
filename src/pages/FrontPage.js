@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import '../App.css'
 import Modal from '../components/Modal'
+import Rater from 'react-rater'
+import 'react-rater/lib/react-rater.css'
+
 
 const FrontPage = (props) => {
     const [search, setSearch] = useState()
@@ -64,7 +67,7 @@ const FrontPage = (props) => {
                { allReviews.map(event => (
                     e._id === event.location ?
                         <div key={event._id}>
-                            <p>Rating: {event.rating}</p>
+                            <p>Rating: <Rater total={5} rating={event.rating} interactive={false}/></p>
                             <p>{event.content}</p>
                             <hr/>
                         </div>
@@ -106,7 +109,8 @@ const FrontPage = (props) => {
 
             <div>
                 {/* adds the value of each of the inputs to the reviews state */}
-                <input type='number' min='1' max='5' placeholder='Rating' onChange={(e) => setReviews({...reviews, rating: e.target.value})}/>
+                <Rater total={5} rating={0} onRate={(e) => setReviews({...reviews, rating: e.rating})}/>
+                {/* <input type='number' min='1' max='5' placeholder='Rating' onChange={(e) => setReviews({...reviews, rating: e.target.value})}/> */}
                 <input placeholder='Add Review' onChange={(e) => setReviews({...reviews, content: e.target.value})}/>
                 {/* <input className='review-id' placeholder={currentLocationId} onChange={(e) => setReviews({...reviews, location: e.target.value})}/> */}
             </div>
