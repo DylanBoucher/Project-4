@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import '../App.css'
 import Modal from '../components/Modal'
 
@@ -7,7 +7,8 @@ const FrontPage = (props) => {
     const [searched, setSearched] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
     const [reviews, setReviews] = useState({rating: '', content: '', location: ''})
-    const { location, createNewReview } = props
+    const { location, createNewReview, allReviews } = props
+    const [currentLocationId, setCurrentLocationId] = useState()
 
     const handleSubmit = (e) => {
         //only lets you search if the search bar has a value
@@ -20,22 +21,23 @@ const FrontPage = (props) => {
         }
     }
 
-    const handleAddReview = async (event) => {
-       event.preventDefault()
-       console.log(reviews)
-       createNewReview(reviews)
-       setReviews({
-           rating: '',
-           content: '',
-           location: ''
-       })
-       //close the modal
-       setIsOpen(false)
+    const handleAddReview = async (e) => {
+        e.preventDefault()
+        console.log(reviews)
+        createNewReview(reviews)
+        setReviews({
+            rating: '',
+            content: '',
+            location: ''
+        })
+        //close the modal
+        setIsOpen(false)
     }
 
     const openReviewModal =() => {
         //opens the modal
         setIsOpen(true)
+        console.log(currentLocationId)
     }
 
     const loaded = () => {
@@ -58,6 +60,17 @@ const FrontPage = (props) => {
                 <p>Website: <a href={`${e.website}`} >{e.website}</a></p>
                 <p className='location-info'>Info: {e.about}</p>
                 <p>Reviews: </p>
+
+               { allReviews.map(event => (
+                    e._id === event.location ?
+                        <div key={event._id}>
+                            <p>Rating: {event.rating}</p>
+                            <p>{event.content}</p>
+                            <hr/>
+                        </div>
+                    : null
+                ))}
+                
                 {/* Opens a modal so you can add a review */}
                 <button onClick={openReviewModal}>Add Review</button>
             </div>
@@ -86,7 +99,7 @@ const FrontPage = (props) => {
                 {/* closes the modal */}
                 <button onClick={() => setIsOpen(false)}>Cancel</button>
                 {/* opens the modal */}
-                <button onClick={handleAddReview}>Add</button>
+                <button type='submit' onClick={handleAddReview}>Add</button>
             </div>
 
             <h1>New Review</h1>

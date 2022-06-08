@@ -33,7 +33,7 @@ const Main = () => {
 
   const createNewReview = async (event) => {
     // make post request to create reviews
-    await fetch('https://capstone-backend-project.herokuapp.com/reviews', {
+    await fetch('https://capstone-backend-project.herokuapp.com/reviews/', {
         method: 'post',
         headers: {
             "Content-Type": "application/json"
