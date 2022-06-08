@@ -10,10 +10,10 @@ function Groups() {
     .then(result => setAllForums(result))
 }
 
-useEffect(() => {
-  getForums()
-  //eslint-disable-next-line
-}, [])
+  useEffect(() => {
+    getForums()
+    //eslint-disable-next-line
+  }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -45,14 +45,14 @@ useEffect(() => {
   }
 
   return (
+    <div>
       <div>
-        <div>
-          <form onSubmit={handleSubmit} className='forum-form'>
-            <input type='text' placeholder='Search...' onChange={(e) => setForumSearch(e.target.value)} className='forum-search'/>
-            <button type='submit' className='forum-submit'>Search</button>
-          </form>
-        </div>
-        {loaded()}
+        <form onSubmit={handleSubmit} className='forum-form'>
+          <input type='text' placeholder='Search...' onChange={(e) => setForumSearch(e.target.value)} className='forum-search'/>
+          <button type='submit' className='forum-submit'>Search</button>
+        </form>
+      </div>
+      {loaded()}
     </div>
   )
 }

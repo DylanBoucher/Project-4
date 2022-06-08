@@ -42,13 +42,21 @@ const Main = () => {
     })
     // update list of reviews
     getReviews()
-    console.log(allReviews)
+  }
+
+  const deleteReview = async (id) => {
+    // make delete request to delete people
+    await fetch('https://capstone-backend-project.herokuapp.com/reviews/' + id, {
+      method: "delete"
+    })
+    // update list of reviews
+    getReviews()
   }
 
   return (
     <main>
         <Routes>
-            <Route path='/' element={<FrontPage  location={location} createNewReview={createNewReview} allReviews={allReviews}/>}/>
+            <Route path='/' element={<FrontPage  location={location} createNewReview={createNewReview} allReviews={allReviews} deleteReview={deleteReview}/>}/>
             <Route path='about/' element={<About />} />
             <Route path='new/' element={<New />} />
             <Route path='groups/' element={<Groups/>} />

@@ -13,6 +13,7 @@ function New() {
   const onSubmit = (e) => {
     e.preventDefault()
     send(
+      // remember to change or fix these before deployment
       process.env.REACT_APP_SERVICE_ID,
       process.env.REACT_APP_TEMPLATE_ID,
       toSend,
@@ -24,7 +25,6 @@ function New() {
     .catch((err) => {
       console.log('FAILED...', err)
     })
-    
   }
 
   const handleChange = (e) => {

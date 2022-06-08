@@ -4,13 +4,12 @@ import Modal from '../components/Modal'
 import Rater from 'react-rater'
 import 'react-rater/lib/react-rater.css'
 
-
 const FrontPage = (props) => {
     const [search, setSearch] = useState()
     const [searched, setSearched] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
     const [reviews, setReviews] = useState({rating: '', content: '', location: ''})
-    const { location, createNewReview, allReviews } = props
+    const { location, createNewReview, allReviews, deleteReview } = props
     const [currentLocationId, setCurrentLocationId] = useState()
 
     const handleSubmit = (e) => {
@@ -18,7 +17,6 @@ const FrontPage = (props) => {
         e.preventDefault()
         if(search){
             setSearched(true)
-            console.log(location)
         }else{
             alert('invalid')
         }
@@ -26,7 +24,6 @@ const FrontPage = (props) => {
 
     const handleAddReview = async (e) => {
         e.preventDefault()
-        console.log(reviews)
         createNewReview(reviews)
         setReviews({
             rating: '',
@@ -41,6 +38,10 @@ const FrontPage = (props) => {
         //opens the modal
         setIsOpen(true)
         // console.log(currentLocationId)
+    }
+
+    const removeReview = (id) => {
+        deleteReview(id)
     }
 
     const loaded = () => {
@@ -60,15 +61,17 @@ const FrontPage = (props) => {
                 <p>Address: <a href={`https://www.google.com/maps/place/${e.address}`} className='address-link'>{e.address}</a></p>
                 <p>Phone Number: {e.number}</p>
                 {/* Links to the location website */}
-                <p>Website: <a href={`${e.website}`} >{e.website}</a></p>
+                <p>Website: <a href={`${e.website}`}>{e.website}</a></p>
                 <p className='location-info'>Info: {e.about}</p>
-                <p>Reviews: ({0})</p>
+                <p>Reviews: <Rater total={5} rating={2} interactive={false}/>({0}) [] Reviews</p>
 
                { allReviews.map(event => (
                     e._id === event.location ?
                         <div key={event._id}>
+                            {/* Using the react-rater library to make the star icons and functionality */}
                             <p>Rating: <Rater total={5} rating={event.rating} interactive={false}/></p>
                             <p>{event.content}</p>
+                            <button onClick={() => removeReview(event._id)} >Delete Review</button>
                             <hr/>
                         </div>
                     : null
@@ -109,8 +112,8 @@ const FrontPage = (props) => {
 
             <div>
                 {/* adds the value of each of the inputs to the reviews state */}
-                <Rater total={5} rating={0} onRate={(e) => setReviews({...reviews, rating: e.rating})}/>
-                {/* <input type='number' min='1' max='5' placeholder='Rating' onChange={(e) => setReviews({...reviews, rating: e.target.value})}/> */}
+                {/* Using the react-rater library to make the star icons and functionality */}
+                <Rater total={5} onRate={(e) => setReviews({...reviews, rating: e.rating})}/>
                 <input placeholder='Add Review' onChange={(e) => setReviews({...reviews, content: e.target.value})}/>
                 {/* <input className='review-id' placeholder={currentLocationId} onChange={(e) => setReviews({...reviews, location: e.target.value})}/> */}
             </div>
