@@ -22,7 +22,7 @@ body {
 .nav a {
   text-decoration: none;
   color: white;
-  font-size: 30px;
+  font-size: 25px;
   padding: 10px;
   border: 1px solid transparent;
 }
@@ -391,4 +391,25 @@ label {
   overflow: hidden;
   text-overflow: ellipsis;
   overflow-wrap: break-word;
+}
+
+.copy-address-button {
+  background-color: white;
+  border: 1px solid white;
+  font-size: 25px;
+  border-radius: 20px;
+  margin-left: 10px;
+  
+}
+
+.copy-address-button:hover {
+  border: 1px solid lightgray;
+  background-color: lightgray;
+  transform: scale(1.1);
+}
+
+.copy-address-button:active {
+  background-color: lightgray;
+  border: 1px solid black;
+
 }

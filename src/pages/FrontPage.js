@@ -51,7 +51,10 @@ const FrontPage = (props) => {
         }else{
             setClamp(true)
         }
-        
+    }
+
+    const copyToClipboard = (address) => {
+        navigator.clipboard.writeText(address)
     }
 
     const loaded = () => {
@@ -71,11 +74,16 @@ const FrontPage = (props) => {
                 <div className='location-content'>
                     <div className='location-buttons'>
                         {/* Links the address to google maps */}
-                        <button><a href={`https://www.google.com/maps/dir//${e.address}`} className='address-link'>Directions</a></button>
+                        <button>
+                            <a href={`https://www.google.com/maps/dir//${e.address}`} className='address-link' target='noreferrer noopener'>Directions</a>
+                        </button>
                         {/* Links to the location website */}
-                        <button><a href={`${e.website}`}>Website</a></button>
+                        <button>
+                            <a href={`${e.website}`} 
+                            target='noreferrer noopener'>Website</a>
+                        </button>
                     </div>
-                    <p><strong>Address:</strong> {e.address}</p>
+                    <p>{e.address} <button className='copy-address-button' onClick={() => copyToClipboard(e.address)}>&#10063;</button></p>
                     <p><strong>Phone Number:</strong> {e.number}</p>
                     <p className={clamp ? 'clamp location-info' : 'locaion-info'}><strong>Info:</strong> {e.about}</p>
                     {clamp ? <button onClick={handleClamp}>more</button>: <button onClick={handleClamp}>less</button>}
