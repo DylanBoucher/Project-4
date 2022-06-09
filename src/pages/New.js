@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { send } from 'emailjs-com'
-import '../App.css'
+import '../App.scss'
 
 function New() {
   const [toSend, setToSend] = useState({

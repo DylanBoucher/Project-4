@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import '../App.css'
+import '../App.scss'
 import Modal from '../components/Modal'
 import Rater from 'react-rater'
-import 'react-rater/lib/react-rater.css'
+import 'react-rater/lib/react-rater.scss'
+
 
 const FrontPage = (props) => {
     const [search, setSearch] = useState()
@@ -11,6 +12,7 @@ const FrontPage = (props) => {
     const [reviews, setReviews] = useState({rating: '', content: '', location: ''})
     const { location, createNewReview, allReviews, deleteReview } = props
     const [currentLocationId, setCurrentLocationId] = useState()
+    const [clamp, setClamp] = useState(true)
 
     const handleSubmit = (e) => {
         //only lets you search if the search bar has a value
@@ -37,11 +39,19 @@ const FrontPage = (props) => {
     const openReviewModal =() => {
         //opens the modal
         setIsOpen(true)
-        // console.log(currentLocationId)
     }
 
     const removeReview = (id) => {
         deleteReview(id)
+    }
+
+    const handleClamp = () => {
+        if(clamp) {
+            setClamp(false)
+        }else{
+            setClamp(true)
+        }
+        
     }
 
     const loaded = () => {
@@ -56,14 +66,23 @@ const FrontPage = (props) => {
             }
         }).map((e) => (
             <div key={e._id} className='locations'>
-                <h3>{e.name}</h3>
-                {/* Links the address to google maps */}
-                <p>Address: <a href={`https://www.google.com/maps/place/${e.address}`} className='address-link'>{e.address}</a></p>
-                <p>Phone Number: {e.number}</p>
-                {/* Links to the location website */}
-                <p>Website: <a href={`${e.website}`}>{e.website}</a></p>
-                <p className='location-info'>Info: {e.about}</p>
-                <p>Reviews: <Rater total={5} rating={2} interactive={false}/>({0}) [] Reviews</p>
+                <h3 className='location-name'>{e.name}</h3>
+                <hr className='reviews-hr'/>
+                <div className='location-content'>
+                    <div className='location-buttons'>
+                        {/* Links the address to google maps */}
+                        <button><a href={`https://www.google.com/maps/dir//${e.address}`} className='address-link'>Directions</a></button>
+                        {/* Links to the location website */}
+                        <button><a href={`${e.website}`}>Website</a></button>
+                    </div>
+                    <p><strong>Address:</strong> {e.address}</p>
+                    <p><strong>Phone Number:</strong> {e.number}</p>
+                    <p className={clamp ? 'clamp location-info' : 'locaion-info'}><strong>Info:</strong> {e.about}</p>
+                    {clamp ? <button onClick={handleClamp}>more</button>: <button onClick={handleClamp}>less</button>}
+                </div>
+                
+                <p className='reviews-header'><strong>Reviews:</strong><Rater total={5} rating={2} interactive={false}/>({0}) 0 Reviews</p>
+                <hr className='reviews-hr'/>
 
                { allReviews.map(event => (
                     e._id === event.location ?
@@ -71,14 +90,14 @@ const FrontPage = (props) => {
                             {/* Using the react-rater library to make the star icons and functionality */}
                             <p>Rating: <Rater total={5} rating={event.rating} interactive={false}/></p>
                             <p>{event.content}</p>
-                            <button onClick={() => removeReview(event._id)} >Delete Review</button>
+                            <button className='delete-review-button' onClick={() => removeReview(event._id)} >Delete</button>
                             <hr/>
                         </div>
                     : null
                 ))}
                 
                 {/* Opens a modal so you can add a review and sets the current location id into a state variable */}
-                <button onMouseEnter={() => setCurrentLocationId(e._id)} onClick={openReviewModal}>Add Review</button>
+                <button className='write-review-button' onMouseEnter={() => setCurrentLocationId(e._id)} onClick={openReviewModal}>Write a Review</button>
             </div>
         ))
     }
@@ -101,20 +120,21 @@ const FrontPage = (props) => {
 
         <div>
         <Modal open={isOpen}>
-            <div>
+            <div className='new-review-button-container'>
                 {/* closes the modal */}
                 <button onClick={() => setIsOpen(false)}>Cancel</button>
                 {/* opens the modal */}
-                <button type='submit' onClick={handleAddReview} onMouseEnter={() => setReviews({...reviews, location: currentLocationId})}>Add</button>
+                <button type='submit' onClick={handleAddReview} onMouseEnter={() => setReviews({...reviews, location: currentLocationId})}>Post</button>
             </div>
 
-            <h1>New Review</h1>
+            <h1 className='new-review-header'>New Review</h1>
+            <hr/>
 
-            <div>
+            <div className='new-review-input-container'>
                 {/* adds the value of each of the inputs to the reviews state */}
                 {/* Using the react-rater library to make the star icons and functionality */}
-                <Rater total={5} onRate={(e) => setReviews({...reviews, rating: e.rating})}/>
-                <input placeholder='Add Review' onChange={(e) => setReviews({...reviews, content: e.target.value})}/>
+                <Rater total={5} onRate={(e) => setReviews({...reviews, rating: e.rating})} className='new-review-stars'/>
+                <textarea placeholder='Add Review ...' onChange={(e) => setReviews({...reviews, content: e.target.value})} className='new-review-textarea'/>
                 {/* <input className='review-id' placeholder={currentLocationId} onChange={(e) => setReviews({...reviews, location: e.target.value})}/> */}
             </div>
         </Modal>
