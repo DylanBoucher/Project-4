@@ -6,10 +6,13 @@ import New from '../pages/New'
 import Groups from '../pages/Groups'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
+import ForumShowPage from '../pages/ForumShowPage'
 
 const Main = () => {
   const [location, setLocation] = useState()
   const [allReviews, setAllReviews] = useState()
+  const [allForums, setAllForums] = useState()
+
   const getLocations = () => {
     //grabs locations from the database
     fetch('https://capstone-backend-project.herokuapp.com/location')
@@ -24,8 +27,15 @@ const Main = () => {
       .then(result => setAllReviews(result))
   }
 
+  const getForums = () => {
+    fetch('https://capstone-backend-project.herokuapp.com/forums')
+    .then(response => response.json())
+    .then(result => setAllForums(result))
+  }
+
   useEffect(() => {
-      //grab the locations and reviews from the database
+      //grab the locations, reviews, and forums from the database
+      getForums()
       getLocations()
       getReviews()
       //eslint-disable-next-line
@@ -57,9 +67,10 @@ const Main = () => {
     <main>
         <Routes>
             <Route path='/' element={<FrontPage  location={location} createNewReview={createNewReview} allReviews={allReviews} deleteReview={deleteReview}/>}/>
+            <Route path='groups/' element={<Groups allForums={allForums} setAllForums={setAllForums} />}/>
             <Route path='about/' element={<About />} />
             <Route path='new/' element={<New />} />
-            <Route path='groups/' element={<Groups/>} />
+            <Route path='groups/:id' element={<ForumShowPage allForums={allForums} allReviews={allReviews} deleteReview={deleteReview} createNewReview={createNewReview}/>}/>
             <Route path='login/' element={<Login/>}/>
             <Route path='register/' element={<Register/>}/>
         </Routes>

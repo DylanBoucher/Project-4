@@ -1,19 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import '../App.scss'
 
-function Groups() {
+function Groups(props) {
   const [forumSearch, setForumSearch] = useState()
-  const [allForums, setAllForums] = useState()
-  const getForums = () => {
-    fetch('https://capstone-backend-project.herokuapp.com/forums')
-    .then(response => response.json())
-    .then(result => setAllForums(result))
-}
-
-  useEffect(() => {
-    getForums()
-    //eslint-disable-next-line
-  }, [])
+  const { allForums, setAllForums } = props
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -29,14 +19,14 @@ function Groups() {
           return value
         }
       }).map((element) => (
-        <div key={element._id}>
-            <h3>{element.name}</h3>
+        <div key={element._id} className='forums-content-container'>
+            <h3><a href={`/groups/${element._id}`}>{element.name}</a></h3>
             <p>{element.about}</p>
         </div>
       )) 
       : allForums ? allForums.map(e => (
-            <div key={e._id}>
-                <h3>{e.name}</h3>
+            <div key={e._id} className='forums-content-container'>
+                <h3><a href={`/groups/${e._id}`}>{e.name}</a></h3>
                 <p>{e.about}</p>
                 <hr/>
             </div>

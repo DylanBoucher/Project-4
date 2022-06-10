@@ -423,3 +423,51 @@ label {
 .front-error-msg {
   font-size: 30px;
 }
+
+.forums-content-container {
+  background-color: white;
+}
+
+.hide {
+  display: none;
+}
+
+.forum-show-header {
+  font-size: 40px;
+  text-align: center;
+}
+
+.forum-show-about {
+  text-align: center;
+}
+
+.forum-show-website {
+  background-color: white;
+  border: 1px solid lightgray;
+  font-size: 20px;
+  padding: 7px;
+  border-radius: 7px;
+  margin: auto 47.5%;
+}
+
+.forum-show-website a {
+  color:rgb(26, 115, 232);
+  text-decoration: none;
+  background-color: white;
+}
+
+.forum-write-btn {
+  margin: auto 46%;
+}
+
+.forum-show-p {
+  text-align: center;
+  font-size: 20px;
+}
+
+.forum-show-textarea {
+  width: 450px;
+  height: 150px;
+  display: flex;
+  margin: auto 38%;
+}
