@@ -13,14 +13,16 @@ const FrontPage = (props) => {
     const { location, createNewReview, allReviews, deleteReview } = props
     const [currentLocationId, setCurrentLocationId] = useState()
     const [clamp, setClamp] = useState(true)
+    const [errMsg, setErrMsg] = useState('')
 
     const handleSubmit = (e) => {
         //only lets you search if the search bar has a value
         e.preventDefault()
         if(search){
             setSearched(true)
+            setErrMsg('')
         }else{
-            alert('invalid')
+            setErrMsg('Invalid Search Terms')
         }
     }
 
@@ -120,11 +122,18 @@ const FrontPage = (props) => {
                     <button type='submit' className='forum-submit'>Search</button>
                 </form>
                 {loaded()}
+                <div className='error-msg-container'>
+                    <p className='front-error-msg' >{errMsg}</p>
+                </div>
+                
             </div>: 
             <form onSubmit={handleSubmit} className='front-form'>
                 <input type='text' placeholder="Search..." onChange={(e) => setSearch(e.target.value)} className='front-search-bar'/>
                 <button type='submit' className='front-submit'>Search</button>
             </form>}
+            <div className='error-msg-container'>
+                <p className='front-error-msg'>{errMsg}</p>
+            </div>
 
         <div>
         <Modal open={isOpen}>

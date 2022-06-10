@@ -114,7 +114,7 @@ label {
   flex-direction: column;
   border: 1px solid lightgray;
   border-radius: 10px;
-  width: 25%;
+  width: 29%;
   min-width: 400px;
   min-height: 375px;
   margin: 20px;
@@ -398,7 +398,7 @@ label {
   border: 1px solid white;
   font-size: 25px;
   border-radius: 20px;
-  margin-left: 10px;
+  margin-left: 5px;
   
 }
 
@@ -412,4 +412,14 @@ label {
   background-color: lightgray;
   border: 1px solid black;
 
+}
+
+
+.error-msg-container {
+  display: flex;
+  justify-content: center;
+}
+
+.front-error-msg {
+  font-size: 30px;
 }
