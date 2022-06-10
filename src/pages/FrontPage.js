@@ -62,6 +62,9 @@ const FrontPage = (props) => {
     const copyToClipboard = (address) => {
         navigator.clipboard.writeText(address)
         setPopUp(true)
+        setInterval(() => {
+            setPopUp(false)
+        }, 10000)
     }
 
     const handlePopUp = () => {
