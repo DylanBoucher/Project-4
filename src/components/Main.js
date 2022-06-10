@@ -76,10 +76,23 @@ const Main = () => {
     getForums()
   }
 
+  const updateLocations = async (forum, id) => {
+    //make request to create forum
+    await fetch('https://capstone-backend-project.herokuapp.com/location/' + id, {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(forum)
+    })
+    // update list of forums
+    getLocations()
+  }
+
   return (
     <main>
         <Routes>
-            <Route path='/' element={<FrontPage  location={location} createNewReview={createNewReview} allReviews={allReviews} deleteReview={deleteReview}/>}/>
+            <Route path='/' element={<FrontPage  location={location} createNewReview={createNewReview} allReviews={allReviews} deleteReview={deleteReview} updateLocations={updateLocations}/>}/>
             <Route path='groups/' element={<Groups allForums={allForums} setAllForums={setAllForums} />}/>
             <Route path='about/' element={<About />} />
             <Route path='new/' element={<New />} />

@@ -10,10 +10,11 @@ const FrontPage = (props) => {
     const [searched, setSearched] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
     const [reviews, setReviews] = useState({rating: '', content: '', location: ''})
-    const { location, createNewReview, allReviews, deleteReview } = props
+    const { location, createNewReview, allReviews, deleteReview, updateLocations } = props
     const [currentLocationId, setCurrentLocationId] = useState()
     const [clamp, setClamp] = useState(true)
     const [errMsg, setErrMsg] = useState('')
+    const [numOfReviews, setNumOfReviews] = useState(0)
 
     const handleSubmit = (e) => {
         //only lets you search if the search bar has a value
@@ -29,6 +30,7 @@ const FrontPage = (props) => {
     const handleAddReview = async (e) => {
         e.preventDefault()
         createNewReview(reviews)
+        updateLocations({reviews: (numOfReviews + 1)}, currentLocationId)
         setReviews({
             rating: '',
             content: '',
@@ -44,6 +46,7 @@ const FrontPage = (props) => {
     }
 
     const removeReview = (id) => {
+        updateLocations({reviews: (numOfReviews - 1)}, currentLocationId)
         deleteReview(id)
     }
 
@@ -70,7 +73,7 @@ const FrontPage = (props) => {
                 return val
             }
         }).map((e) => (
-            <div key={e._id} className='locations'>
+            <div key={e._id} className='locations' onMouseEnter={() => {setCurrentLocationId(e._id); setNumOfReviews(e.reviews)}}>
                 <h3 className='location-name'>{e.name}</h3>
                 <hr className='reviews-hr'/>
                 <div className='location-content'>
@@ -91,7 +94,7 @@ const FrontPage = (props) => {
                     {clamp ? <button onClick={handleClamp}>more</button>: <button onClick={handleClamp}>less</button>}
                 </div>
                 
-                <p className='reviews-header'><strong>Reviews:</strong><Rater total={5} rating={2} interactive={false}/>({0}) 0 Reviews</p>
+                <p className='reviews-header'><strong>Reviews:</strong><Rater total={5} rating={2} interactive={false}/>({0}) {e.reviews} Reviews</p>
                 <hr className='reviews-hr'/>
 
                { allReviews.map(event => (
