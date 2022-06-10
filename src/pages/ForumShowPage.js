@@ -65,8 +65,6 @@ function ForumShowPage(props) {
             </div>
         : null
     )) : null}
-
-     {/* {!forum.reviews ? <p className='forum-show-p'>No Reviews</p>: null} */}
     </div>
   )
 }

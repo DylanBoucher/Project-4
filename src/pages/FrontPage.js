@@ -15,6 +15,7 @@ const FrontPage = (props) => {
     const [clamp, setClamp] = useState(true)
     const [errMsg, setErrMsg] = useState('')
     const [numOfReviews, setNumOfReviews] = useState(0)
+    const [popUp, setPopUp] = useState(false)
 
     const handleSubmit = (e) => {
         //only lets you search if the search bar has a value
@@ -60,6 +61,11 @@ const FrontPage = (props) => {
 
     const copyToClipboard = (address) => {
         navigator.clipboard.writeText(address)
+        setPopUp(true)
+    }
+
+    const handlePopUp = () => {
+        setPopUp(false)
     }
 
     const loaded = () => {
@@ -88,10 +94,10 @@ const FrontPage = (props) => {
                             target='noreferrer noopener'>Website</a>
                         </button>
                     </div>
-                    <p>{e.address} <button className='copy-address-button' onClick={() => copyToClipboard(e.address)}>&#10063;</button></p>
+                    <p>{e.address} <button className='copy-address-button' onClick={() => copyToClipboard(e.address)}><img src='https://www.gstatic.com/images/icons/material/system_gm/1x/content_copy_gm_grey_18dp.png'/></button></p>
                     <p><strong>Phone Number:</strong> {e.number}</p>
                     <p className={clamp ? 'clamp location-info' : 'locaion-info'}><strong>Info:</strong> {e.about}</p>
-                    {clamp ? <button onClick={handleClamp}>more</button>: <button onClick={handleClamp}>less</button>}
+                    {/* {clamp ? <button onClick={handleClamp}>more</button>: <button onClick={handleClamp}>less</button>} */}
                 </div>
                 
                 <p className='reviews-header'><strong>Reviews:</strong><Rater total={5} rating={2} interactive={false}/>({0}) {e.reviews} Reviews</p>
@@ -158,6 +164,10 @@ const FrontPage = (props) => {
                 {/* <input className='review-id' placeholder={currentLocationId} onChange={(e) => setReviews({...reviews, location: e.target.value})}/> */}
             </div>
         </Modal>
+      </div>
+      <div className={popUp ? 'popup' : 'hide'}>
+            
+            <p className='popup-message'>Copied to Clipboard<button onClick={handlePopUp} className='popup-x'>X</button> </p>
       </div>
     </>
     )
