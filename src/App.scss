@@ -426,6 +426,7 @@ label {
   width: 1000px;
   flex-direction: column;
   justify-content: center;
+  padding-left: 10px;
 }
 
 .forums-content-container:hover {
@@ -492,10 +493,27 @@ label {
 }
 
 .forum-show-new-btn {
-  display: inline;
+  text-align: center;
 }
-.forum-show-close {
-  margin-right: 20px;
+
+.forum-show-new-btn button {
+  margin: 30px 50px;
+  background-color: white;
+  color: rgb(26, 115, 232);
+  border: 1px solid lightgray;
+  border-radius: 7px;
+  font-size: 25px;
+}
+
+.forum-show-new-btn button:hover {
+  opacity: 80%;
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.forum-show-new-btn button:active {
+  background-color: rgb(26, 115, 232);
+  color: white;
 }
 
 .forum-show-reviews {
@@ -529,4 +547,9 @@ label {
   color: lightgray;
   transform: scale(1.1);
   cursor: pointer;
+}
+
+.no-reviews {
+  text-align: center;
+  font-size: 30px;
 }

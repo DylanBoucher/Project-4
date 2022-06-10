@@ -41,18 +41,20 @@ function ForumShowPage(props) {
     </div>: <p>Loading...</p>}
 
     {!write ? <button className='write-review-button forum-write-btn' onClick={() => setWrite(true)}>Write a Review</button> : null}
-
+    
     <div className={write ? 'new-review-input-container forum-show-input-container' : 'hide'}>
         {/* Using the react-rater library to make the star icons and functionality */}
         <Rater total={5} onRate={(e) => setReviews({...reviews, rating: e.rating})} className='new-review-stars'/>
         <textarea placeholder='Add Review ...' value={reviews.content} onChange={(e) => setReviews({...reviews, content: e.target.value})} className='forum-show-textarea'/>
         
-        <div className='new-review-button-container forum-show-new-btn'>
+        <div className='forum-show-new-btn'>
             <button onClick={() => setWrite(false)} className='forum-show-close'>Close</button>
             <button type='submit' onClick={handleAddReview} onMouseEnter={() => setReviews({...reviews, location: forum._id})}>Post</button>
         </div>
         <hr/>
     </div>
+
+    {/* {!forum.reviews ? <p className='no-reviews'>No Reviews</p> : null} */}
 
     { allReviews ? allReviews.map(event => (
         forum._id === event.location ?
