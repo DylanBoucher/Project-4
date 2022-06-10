@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
 body {
-  background-image: url('https://images.pexels.com/photos/7135058/pexels-photo-7135058.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  background-image: url('https://images.pexels.com/photos/7130472/pexels-photo-7130472.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
   background-repeat: no-repeat;
   background-size: cover;
   font-family: 'Poppins', sans-serif;
@@ -56,11 +56,11 @@ a:active {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  border: 1px solid gray;
+  border: 1px solid lightgray;
   padding: 0px;
   width: 350px;
   margin: 5% 40%;
-  // font-family: 'Poppins', sans-serif;
+  border-radius: 7px;
   background-color: white;
 }
 
@@ -80,9 +80,9 @@ label {
 
 /* Submit button */
 .request-submit {
-  background-color: #3174ad;
-  border: 1px solid #3174ad;
-  color: white;
+  background-color: white;
+  border: 1px solid rgb(26, 115, 232);
+  color: rgb(26, 115, 232);
   font-size: 20px;
   padding: 6px 10px;
   width: 250px;
@@ -96,7 +96,7 @@ label {
 
 /* Submit button on click */
 .request-submit:active {
-  background-color: #428ccc;
+  background-color: rgb(26, 115, 232);
   color: white;
   opacity: 100%;
 }
@@ -121,13 +121,6 @@ label {
   background-color: white;
   padding: 0 15px;
 }
-
-// .location-info {
-//   white-space: nowrap;
-//   overflow:hidden;
-//   text-transform: ellipsis;
-//   display: inline-block;
-// }
 
 /* Search bar and search button */
 .front-form {
@@ -425,11 +418,34 @@ label {
 }
 
 .forums-content-container {
+  display: flex;
   background-color: white;
+  border: 1px solid lightgray;
+  border-radius: 7px;
+  margin: 20px 23%;
+  width: 1000px;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.forums-content-container:hover {
+  transform: scale(1.1);
+}
+
+.forums-content-container a {
+  text-decoration: none;
+  color: black;
 }
 
 .hide {
   display: none;
+}
+
+.forum-show-page-container {
+  background-color: white;
+  border: 1px solid lightgray;
+  border-radius: 7px;
+  margin-top: 20px;
 }
 
 .forum-show-header {
@@ -457,7 +473,7 @@ label {
 }
 
 .forum-write-btn {
-  margin: auto 46%;
+  margin: auto 46% 20px 46%;
 }
 
 .forum-show-p {
@@ -471,3 +487,20 @@ label {
   display: flex;
   margin: auto 38%;
 }
+.forum-show-reviews-head {
+  margin-top: 100px;
+}
+
+.forum-show-new-btn {
+  display: inline;
+}
+.forum-show-close {
+  margin-right: 20px;
+}
+
+.forum-show-reviews {
+  background-color: rgb(248, 248, 248);
+  padding: 10px;
+}
+
+

@@ -20,16 +20,20 @@ function Groups(props) {
         }
       }).map((element) => (
         <div key={element._id} className='forums-content-container'>
-            <h3><a href={`/groups/${element._id}`}>{element.name}</a></h3>
+          <a href={`/groups/${element._id}`}>
+            <h3>{element.name}</h3>
             <p>{element.about}</p>
+          </a>
+            
         </div>
       )) 
       : allForums ? allForums.map(e => (
-            <div key={e._id} className='forums-content-container'>
-                <h3><a href={`/groups/${e._id}`}>{e.name}</a></h3>
-                <p>{e.about}</p>
-                <hr/>
-            </div>
+        <div key={e._id} className='forums-content-container'>
+          <a href={`/groups/${e._id}`}>
+            <h3>{e.name}</h3>
+            <p>{e.about}</p>
+          </a>
+        </div>
           )): <>Loading...</>
     )
   }
