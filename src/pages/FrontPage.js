@@ -25,6 +25,9 @@ const FrontPage = (props) => {
             setErrMsg('')
         }else{
             setErrMsg('Invalid Search Terms')
+            setInterval(() => {
+                setErrMsg('')
+            }, 10000)
         }
     }
 
@@ -97,7 +100,7 @@ const FrontPage = (props) => {
                             target='noreferrer noopener'>Website</a>
                         </button>
                     </div>
-                    <p>{e.address} <button className='copy-address-button' onClick={() => copyToClipboard(e.address)}><img src='https://www.gstatic.com/images/icons/material/system_gm/1x/content_copy_gm_grey_18dp.png'/></button></p>
+                    <p>{e.address} <button className='copy-address-button' onClick={() => copyToClipboard(e.address)}><img src='https://www.gstatic.com/images/icons/material/system_gm/1x/content_copy_gm_grey_18dp.png' alt='clipboard icon'/></button></p>
                     <p><strong>Phone Number:</strong> {e.number}</p>
                     <p className={clamp ? 'clamp location-info' : 'locaion-info'}><strong>Info:</strong> {e.about}</p>
                     {/* {clamp ? <button onClick={handleClamp}>more</button>: <button onClick={handleClamp}>less</button>} */}
@@ -128,25 +131,44 @@ const FrontPage = (props) => {
     <>
     {/* if you have clicked the search button with a value in the search bar it will show the search bar at the top of the page and the search results below it, else just the search bar with be visible */}
         {searched ? 
-            <div>
-                <form onSubmit={handleSubmit} className='forum-form'>
+            <div className='searched-content'>
+                <form onSubmit={handleSubmit} className='unsearch-front-form'>
                     <input type='text' placeholder="Search..." onChange={(e) => setSearch(e.target.value)} className='forum-search'/>
                     <button type='submit' className='forum-submit'>Search</button>
                 </form>
-                {loaded()}
-                <div className='error-msg-container'>
-                    <p className='front-error-msg' >{errMsg}</p>
+                <div className={errMsg ? 'error-msg-container' : 'hide'}>
+                    <p className='front-error-msg'>{errMsg}</p>
                 </div>
-                
-            </div>: 
-            <form onSubmit={handleSubmit} className='front-form'>
-                <input type='text' placeholder="Search..." onChange={(e) => setSearch(e.target.value)} className='front-search-bar'/>
-                <button type='submit' className='front-submit'>Search</button>
-            </form>}
-            <div className='error-msg-container'>
-                <p className='front-error-msg'>{errMsg}</p>
-            </div>
+                {loaded()}
+            </div>:
+            <div>
+               <form onSubmit={handleSubmit} className='front-form'>
+                    <input type='text' placeholder="Search..." onChange={(e) => setSearch(e.target.value)} className='front-search-bar'/>
+                    <button type='submit' className='front-submit'>Search</button>
+                </form>
 
+                <div className={errMsg ? 'error-msg-container' : 'hide'}>
+                    <p className='front-error-msg'>{errMsg}</p>
+                </div>
+
+                <div>
+                    <p className='about-info'>Find resources dedicated to people with special needs.</p>
+                    <hr className='about-'/>
+                    <div className='about-content'>
+                        <p>"All kids need is a little help, a little hope, and someone who believes in them."</p>
+                        <p>- Magic Johnson.</p>
+                    </div>
+                </div>
+            </div>
+            }
+
+            <div>
+                <div className='about-link-container'>
+                    <p className='linkedin-link'>LinkedIn: <a href='https://www.linkedin.com/in/dylan-boucher-4129a0222'> https://www.linkedin.com/in/dylan-boucher-4129a0222</a></p>
+                    <p className='github-link'>Github: <a href='https://github.com/DylanBoucher/Project-4.git'> https://github.com/DylanBoucher/Project-4.git</a></p>
+                </div>
+            </div>
+            
         <div>
         <Modal open={isOpen}>
             <div className='new-review-button-container'>
