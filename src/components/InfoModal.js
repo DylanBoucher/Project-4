@@ -21,11 +21,11 @@ const OVERLAY_STYLES ={
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, .7)',
+    backgroundColor: 'rgba(0, 0, 0, .2)',
     zIndex: 1000
 }
 
-function Modal(props) {
+function InfoModal(props) {
     if(!props.open) return null
   return ReactDom.createPortal (
     <div>
@@ -38,4 +38,4 @@ function Modal(props) {
   )
 }
 
-export default Modal
+export default InfoModal

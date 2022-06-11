@@ -1,21 +1,24 @@
 import React, { useState } from 'react'
 import '../App.scss'
 import Modal from '../components/Modal'
+import InfoModal from '../components/InfoModal'
 import Rater from 'react-rater'
 import 'react-rater/lib/react-rater.scss'
-
+import Footer from '../components/Footer'
 
 const FrontPage = (props) => {
+    const { location, createNewReview, allReviews, deleteReview, updateLocations } = props
+
     const [search, setSearch] = useState()
     const [searched, setSearched] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
     const [reviews, setReviews] = useState({rating: '', content: '', location: ''})
-    const { location, createNewReview, allReviews, deleteReview, updateLocations } = props
     const [currentLocationId, setCurrentLocationId] = useState()
-    const [clamp, setClamp] = useState(true)
     const [errMsg, setErrMsg] = useState('')
     const [numOfReviews, setNumOfReviews] = useState(0)
     const [popUp, setPopUp] = useState(false)
+    const [openInfo, setOpenInfo] = useState(false)
+    const [info, setInfo] = useState('')
 
     const handleSubmit = (e) => {
         //only lets you search if the search bar has a value
@@ -54,14 +57,6 @@ const FrontPage = (props) => {
         deleteReview(id)
     }
 
-    const handleClamp = () => {
-        if(clamp) {
-            setClamp(false)
-        }else{
-            setClamp(true)
-        }
-    }
-
     const copyToClipboard = (address) => {
         navigator.clipboard.writeText(address)
         setPopUp(true)
@@ -72,6 +67,11 @@ const FrontPage = (props) => {
 
     const handlePopUp = () => {
         setPopUp(false)
+    }
+
+    const handleInfoClick = (e) => {
+        setInfo(e)
+        setOpenInfo(true)
     }
 
     const loaded = () => {
@@ -102,9 +102,16 @@ const FrontPage = (props) => {
                     </div>
                     <p>{e.address} <button className='copy-address-button' onClick={() => copyToClipboard(e.address)}><img src='https://www.gstatic.com/images/icons/material/system_gm/1x/content_copy_gm_grey_18dp.png' alt='clipboard icon'/></button></p>
                     <p><strong>Phone Number:</strong> {e.number}</p>
-                    <p className={clamp ? 'clamp location-info' : 'locaion-info'}><strong>Info:</strong> {e.about}</p>
-                    {/* {clamp ? <button onClick={handleClamp}>more</button>: <button onClick={handleClamp}>less</button>} */}
+                    <p className='clamp location-info'><strong>Info:</strong> {e.about}</p>
+                    <button className='more-btn' onClick={() => handleInfoClick(e.about)}>more...</button>
                 </div>
+                <InfoModal open={openInfo}>
+                    <div className='info-modal'>
+                        <button onClick={() => setOpenInfo(false)} className='info-modal-x'>X</button>
+                        <h1>Info</h1>
+                        <p>{info}</p>
+                    </div>
+                </InfoModal>
                 
                 <p className='reviews-header'><strong>Reviews:</strong><Rater total={5} rating={2} interactive={false}/>({0}) {e.reviews} Reviews</p>
                 <hr className='reviews-hr'/>
@@ -162,12 +169,7 @@ const FrontPage = (props) => {
             </div>
             }
 
-            <div>
-                <div className='about-link-container'>
-                    <p className='linkedin-link'>LinkedIn: <a href='https://www.linkedin.com/in/dylan-boucher-4129a0222'> https://www.linkedin.com/in/dylan-boucher-4129a0222</a></p>
-                    <p className='github-link'>Github: <a href='https://github.com/DylanBoucher/Project-4.git'> https://github.com/DylanBoucher/Project-4.git</a></p>
-                </div>
-            </div>
+            <Footer/>
             
         <div>
         <Modal open={isOpen}>

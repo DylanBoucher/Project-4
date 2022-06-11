@@ -211,16 +211,28 @@ label {
 
 /* FORUM STYLES */
 
+.forums-content {
+  background: linear-gradient(to right,white, rgb(119, 214, 90), lightblue, white);
+}
+
+.forums-content {
+  padding-bottom: 15%;
+}
+
 /* Form styling */
 .forum-form {
   display: flex;
   justify-content: center;
-  margin-top: 15px;
+  margin: 8px -8px 16px -8px;
+  // border-bottom: 1px solid lightgray;
+  padding: 100px;
+  background-image: url('https://www.sheffieldcommunitychurch.com/Images/content/2343/1024011.jpg');
+  background-size: cover;
 }
 
 .searched-content {
   margin: auto -8px;
-  background: linear-gradient(#bc8f8f, #d8bfd8, #deb887);
+  background: linear-gradient(#deb887, #bc8f8f, #d8bfd8, #deb887);
 }
 
 .unsearch-front-form {
@@ -449,7 +461,6 @@ label {
   border: 1px solid black;
 }
 
-
 .error-msg-container {
   display: flex;
   justify-content: center;
@@ -598,4 +609,36 @@ label {
 
 .front-bottom-container {
   background-color: gray;
+}
+
+.more-btn {
+  background-color: white;
+  width: 50px;
+  margin: -10px 0 0 0;
+  border:none;
+  color:rgb(26, 115, 232);
+  font-weight: bold;
+}
+
+.more-btn:hover {
+  color:rgb(26, 90, 200);
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.info-modal-x {
+  background-color: white;
+  color: black;
+  border: none;
+  font-size: 15px;
+  float: right;
+  margin-top: 0;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+
+.info-modal-x:hover {
+  color: gray;
+  transform: scale(1.1);
+  cursor: pointer;
 }

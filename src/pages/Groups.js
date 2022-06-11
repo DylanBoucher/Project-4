@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import '../App.scss'
+import Footer from '../components/Footer'
 
 function Groups(props) {
   const [forumSearch, setForumSearch] = useState()
@@ -39,8 +40,9 @@ function Groups(props) {
   }
 
   return (
-    <div>
-      <div>
+    <>
+      <div className='forums-content'>
+      <div className='forums-content-sub'>
         <form onSubmit={handleSubmit} className='forum-form'>
           <input type='text' placeholder='Search...' onChange={(e) => setForumSearch(e.target.value)} className='forum-search'/>
           <button type='submit' className='forum-submit'>Search</button>
@@ -48,6 +50,9 @@ function Groups(props) {
       </div>
       {loaded()}
     </div>
+    <Footer/>
+    </>
+   
   )
 }
 
