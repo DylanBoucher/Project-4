@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { useParams } from 'react-router-dom'
 import Rater from 'react-rater'
+import Footer from '../components/Footer'
 
 function ForumShowPage(props) {
     const { id } = useParams()
@@ -29,7 +30,6 @@ function ForumShowPage(props) {
     <>
     <img className='show-page-image' src='https://www.westonct.gov/home/showpublishedimage/906/637281481834430000' alt='people holding hands'/>
     <div className='forum-show-page-container'>
-        
         {forum ? 
         <div className='forum-show-container'>
             <h1 className='forum-show-header'>{forum.name}</h1>
@@ -71,6 +71,7 @@ function ForumShowPage(props) {
             : null
         )) : null}
     </div>
+    <Footer/>
     </>
   )
 }

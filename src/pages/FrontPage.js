@@ -83,6 +83,8 @@ const FrontPage = (props) => {
             //Checks to see if the words in the search bar match any of the tags on a location
             } else if (val.tags.toLowerCase().includes(search.toLowerCase())) {
                 return val
+            }else {
+                return null
             }
         }).map((e) => (
             <div key={e._id} className='locations' onMouseEnter={() => {setCurrentLocationId(e._id); setNumOfReviews(e.reviews)}}>
@@ -159,7 +161,7 @@ const FrontPage = (props) => {
                 </div>
 
                 <div>
-                    <p className='about-info'>Find resources dedicated to people with special needs.</p>
+                    <p className='front-info'>Find resources dedicated to people with special needs.</p>
                     <hr className='about-'/>
                     <div className='about-content'>
                         <p>"All kids need is a little help, a little hope, and someone who believes in them."</p>
@@ -192,8 +194,8 @@ const FrontPage = (props) => {
             </div>
         </Modal>
       </div>
+
       <div className={popUp ? 'popup' : 'hide'}>
-            
             <p className='popup-message'>Copied to Clipboard<button onClick={handlePopUp} className='popup-x'>X</button> </p>
       </div>
     </>

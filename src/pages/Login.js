@@ -1,6 +1,7 @@
 import React, {useRef, useState, useEffect, useContext} from 'react'
 import AuthContext from '../context/AuthProvider'
 import { Link } from 'react-router-dom'
+import Footer from '../components/Footer'
 
 import axios from '../api/axios'
 const LOGIN_URL = '/auth'
@@ -63,7 +64,7 @@ const Login = () => {
                 <h1>You are logged in!</h1>
                 <br/>
                 <p>
-                    <a href='#'>Go to Home</a>
+                    {/* <a href='#'>Go to Home</a> */}
                 </p>
             </section>
         ) : (
@@ -99,6 +100,7 @@ const Login = () => {
             </p>
         </section>
         )}
+        <Footer/>
     </>
   )
 }

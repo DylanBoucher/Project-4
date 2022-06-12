@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { send } from 'emailjs-com'
 import '../App.scss'
+import Footer from '../components/Footer'
 
 function New() {
   const [toSend, setToSend] = useState({
@@ -81,6 +82,7 @@ function New() {
         />
         <button type='submit' className='request-submit'>Submit</button>
       </form>
+      <Footer/>
     </div>
   )
 }
