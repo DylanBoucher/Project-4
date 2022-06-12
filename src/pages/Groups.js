@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import '../App.scss'
 import Footer from '../components/Footer'
 
 function Groups(props) {
   const [forumSearch, setForumSearch] = useState()
-  const { allForums, setAllForums } = props
+  const { allForums } = props
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -18,6 +18,8 @@ function Groups(props) {
           return value
         }else if (value.tags.toLowerCase().includes(forumSearch.toLowerCase())) {
           return value
+        } else {
+          return null
         }
       }).map((element) => (
         <div key={element._id} className='forums-content-container'>

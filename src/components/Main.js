@@ -93,7 +93,7 @@ const Main = () => {
     <main>
         <Routes>
             <Route path='/' element={<FrontPage  location={location} createNewReview={createNewReview} allReviews={allReviews} deleteReview={deleteReview} updateLocations={updateLocations}/>}/>
-            <Route path='groups/' element={<Groups allForums={allForums} setAllForums={setAllForums} />}/>
+            <Route path='groups/' element={<Groups allForums={allForums} />}/>
             <Route path='about/' element={<About />} />
             <Route path='new/' element={<New />} />
             <Route path='groups/:id' element={<ForumShowPage allForums={allForums} allReviews={allReviews} deleteReview={deleteReview} createNewReview={createNewReview} updateForums={updateForums}/>}/>
