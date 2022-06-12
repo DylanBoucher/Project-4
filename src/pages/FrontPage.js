@@ -113,7 +113,7 @@ const FrontPage = (props) => {
                     </div>
                 </InfoModal>
                 
-                <p className='reviews-header'><strong>Reviews:</strong><Rater total={5} rating={2} interactive={false}/>({0}) {e.reviews} Reviews</p>
+                <p className='reviews-header'><strong>Reviews:</strong>{/*<Rater total={5} rating={2} interactive={false}/>({0})*/} {e.reviews} Reviews</p>
                 <hr className='reviews-hr'/>
 
                { allReviews.map(event => (
