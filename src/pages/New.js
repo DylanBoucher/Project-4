@@ -15,10 +15,10 @@ function New() {
     e.preventDefault()
     send(
       // remember to change or fix these before deployment
-      process.env.REACT_APP_SERVICE_ID,
-      process.env.REACT_APP_TEMPLATE_ID,
+      'service_jkzvj1e',
+      'template_afgn72p',
       toSend,
-      process.env.REACT_APP_PUBLIC_KEY
+      'mB83yE9tPQpeOaavU'
     )
     .then((response) => {
       console.log('SUCCESS!', response.status, response.text)
