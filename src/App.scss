@@ -317,7 +317,6 @@ label {
 .delete-review-button:hover{
   opacity: 80%;
   transform: scale(1.1);
-  background-color: hsl(214, 82%, 97%);
   cursor: pointer;
 }
 
@@ -359,12 +358,17 @@ label {
 
 .delete-review-button {
   background-color: white;
-  border: 1px solid lightgray;
-  padding: 5px;
-  border-radius: 5px;
+  border: none;
   font-size: 15px;
-  color: rgb(26, 115, 232);
-  margin: 0  0 10px 0;
+  // margin: 0  0 10px 0;
+}
+
+.trash-icon {
+  width: 20px;
+}
+
+.trash-icon:hover {
+  background-color: lightgray;
 }
 
 .write-review-button {
