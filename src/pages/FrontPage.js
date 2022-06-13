@@ -137,6 +137,7 @@ const FrontPage = (props) => {
                 
                 {/* Opens a modal so you can add a review and sets the current location id into a state variable */}
                 <button className='write-review-button' onMouseEnter={() => setCurrentLocationId(e._id)} onClick={openReviewModal}>Write a Review</button>
+                {e.reviews === 0 ? <p className='no-reviews'>No Reviews</p> : null}
             </div>
         ))
     }
