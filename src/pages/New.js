@@ -14,7 +14,6 @@ function New() {
   const onSubmit = (e) => {
     e.preventDefault()
     send(
-      // remember to change or fix these before deployment
       'service_jkzvj1e',
       'template_afgn72p',
       toSend,

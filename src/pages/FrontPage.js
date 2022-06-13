@@ -35,6 +35,7 @@ const FrontPage = (props) => {
     }
 
     const handleAddReview = async (e) => {
+        //creates a review
         e.preventDefault()
         createNewReview(reviews)
         updateLocations({reviews: (numOfReviews + 1)}, currentLocationId)
@@ -53,11 +54,13 @@ const FrontPage = (props) => {
     }
 
     const removeReview = (id) => {
+        //deletes review
         updateLocations({reviews: (numOfReviews - 1)}, currentLocationId)
         deleteReview(id)
     }
 
     const copyToClipboard = (address) => {
+        //copies address to clipboard and opens popup div
         navigator.clipboard.writeText(address)
         setPopUp(true)
         setInterval(() => {
@@ -66,10 +69,12 @@ const FrontPage = (props) => {
     }
 
     const handlePopUp = () => {
+        //closes popup div
         setPopUp(false)
     }
 
     const handleInfoClick = (e) => {
+        //opens location info modal
         setInfo(e)
         setOpenInfo(true)
     }
